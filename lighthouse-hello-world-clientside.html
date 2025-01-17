@@ -1,42 +1,8 @@
 <html>
     <head>
-        <script>
-            !function(n,o){o.forEach(function(o){n[o]||((n.__alloyNS=n.__alloyNS||
-            []).push(o),n[o]=function(){var u=arguments;return new Promise(
-            function(i,l){n[o].q.push([i,l,u])})},n[o].q=[])})}
-            (window,["alloy"]);
-          </script>
           <script src="assets/alloy.min.js" async></script>
           <script src="assets/scripts.js" async></script>
-          <script>
-            alloy("configure", {
-                datastreamId: "27d43572-4f83-479d-af85-6c8a1176b93e",
-                orgId: "E15EA5EF56F25C847F000101@AdobeOrg",
-                clickCollectionEnabled: true,
-                clickCollection: {
-                    internalLinkEnabled: true,
-                    downloadLinkEnabled: true,
-                    externalLinkEnabled: true,
-                    eventGroupingEnabled: true,
-                    sessionStorageEnabled: true
-                },
-                context: ["web", "device", "environment", "placeContext", "highEntropyUserAgentHints"],
-                debugEnabled: true,
-                defaultConsent: "pending",
-                downloadLinkQualifier: "\.(exe|zip|wav|mp3|mov|mpg|avi|wmv|pdf|doc|docx|xls|xlsx|ppt|pptx)$",
-                idMigrationEnabled: false,
-                onBeforeEventSend: function(content) {
-                    if(content.xdm.web?.webReferrer) delete content.xdm.web.webReferrer.URL;
-                },
-                onBeforeLinkClickSend: function(content) {
-                    content.xdm.web.webPageDetails.URL = "https://example.com/current.html";
-                },
-                prehidingStyle: "#personalization_container { opacity: 0 !important }",
-                targetMigrationEnabled: true,
-                thirdPartyCookiesEnabled: false
-                });
-          </script>
-          
+
         <title>Hello World Page</title>
     </head>
     <body>
