@@ -7,11 +7,40 @@
             (window,["alloy"]);
           </script>
           <script src="assets/alloy.min.js" async></script>
+          <script>
+            alloy("configure", {
+                datastreamId: "27d43572-4f83-479d-af85-6c8a1176b93e",
+                orgId: "E15EA5EF56F25C847F000101@AdobeOrg",
+                clickCollectionEnabled: true,
+                clickCollection: {
+                    internalLinkEnabled: true,
+                    downloadLinkEnabled: true,
+                    externalLinkEnabled: true,
+                    eventGroupingEnabled: true,
+                    sessionStorageEnabled: true
+                },
+                context: ["web", "device", "environment", "placeContext", "highEntropyUserAgentHints"],
+                debugEnabled: true,
+                defaultConsent: "pending",
+                downloadLinkQualifier: "\.(exe|zip|wav|mp3|mov|mpg|avi|wmv|pdf|doc|docx|xls|xlsx|ppt|pptx)$",
+                idMigrationEnabled: false,
+                onBeforeEventSend: function(content) {
+                    if(content.xdm.web?.webReferrer) delete content.xdm.web.webReferrer.URL;
+                },
+                onBeforeLinkClickSend: function(content) {
+                    content.xdm.web.webPageDetails.URL = "https://example.com/current.html";
+                },
+                prehidingStyle: "#personalization_container { opacity: 0 !important }",
+                targetMigrationEnabled: true,
+                thirdPartyCookiesEnabled: false
+                });
+          </script>
           
         <title>Hello World Page</title>
     </head>
     <body>
         <h1>Hello World</h1>
-        <p>The simplest possible web page. No TM, no personlization, no nuffin</p>
+        <p>Alloy hosted, Target clientside personlization</p>
+        <div id="personlization_container" style="opacity: 1">Personlized content goes here</div>
     </body>
 </html>
